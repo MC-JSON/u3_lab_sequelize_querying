@@ -62,7 +62,7 @@ const findAllJohns = async () => {
 
 const findJohnOrJane = async () => {
   const result = await User.findAll({
-    where: { firstName: 'John', firstName: 'Jane' }
+    where: { [Op.or]: [{ firstName: 'John' }, { firstName: 'Jane' }] }
   })
   stringify(result)
   // Find all users where firstname is either John or Jane
@@ -75,8 +75,8 @@ const run = async () => {
     // await createNewUser()
     // await updateUser()
     // await findUsersOnlyEmail()
-    await findAllJohns()
-    // await findJohnOrJane()
+    // await findAllJohns()
+    await findJohnOrJane()
     // await deleteWhere()
   } catch (error) {
   } finally {
